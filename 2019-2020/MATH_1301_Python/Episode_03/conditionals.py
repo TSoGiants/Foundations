@@ -4,7 +4,6 @@ print("Hello, " + name.split(" ")[0] + "!")
 
 x = input("Give me an integer to add: ")
 
-
 try:
 	x = int(x)	
 except:
