@@ -1,6 +1,6 @@
 name = input("Please enter your name. > ")
 
-print("Hello, " + name.split(" ")[0] + "!")
+print("Hello, " + name.split(" ")[0].title() + "!")
 
 x = input("Give me an integer to add: ")
 
