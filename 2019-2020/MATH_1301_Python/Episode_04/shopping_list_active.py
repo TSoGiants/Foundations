@@ -4,12 +4,9 @@ while True:
 	text = input("Enter command (read/add/remove/quit): ")
 	if(text.lower() == "read"):
 		for key in shopping_list:
-			if(shopping_list[key]):		### This is a kludgy workaround.
-										### I will fix this when I figure out the
-										### best way to remove empty keys from a dict.
-				print(key.title() + ":")
-				for item in shopping_list[key]:
-					print(" * " + item.title())
+			print(key.title() + ":")
+			for item in shopping_list[key]:
+				print(" * " + item.title())
 	elif(text.lower() == "add"):
 		it = input("Enter item name: ")
 		print("Current categories:")
@@ -22,13 +19,17 @@ while True:
 			shopping_list[cat] = [it.lower()]
 	elif (text.lower() == "remove"):
 		it = input("Enter item to remove: ")
+		### This was my fix to the issue of removing an empty key from a dict:
+		empties = []	# Create an empty list to store keys that have become empty.
 		for key in shopping_list:
 			if it.lower() in shopping_list[key]:
 				shopping_list[key].remove(it.lower())
 				print("Removed " + it + " from category " + key + ".")
-		#########################################################################
-		### This is probably where we should remove the empty keys from list. ###
-		#########################################################################
+				if not shopping_list[key]:	# i.e. If the key is empty.
+					empties.append(key)	# Add the key to the list of empty keys.
+		for key in empties:		# Go through each key that has been flagged as empty.
+			shopping_list.pop(key)	# Take out the trash (remove empty keys).
+	
 	elif (text.lower() == "quit" or text.lower() == "q"):
 		print("Goodbye.")
 		break
