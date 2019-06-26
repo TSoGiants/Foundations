@@ -1,12 +1,42 @@
 shopping_list = {"meat": ["chicken", "beef"], "produce": ["onions", "tomatoes", "jalepenos"], "bread": ["tortillas"], "other": ["laundry detergent"]}
 
+def getLongest(dictionary):
+	longest = 0
+	for key in dictionary:
+		if len(str(key)) > longest:
+			longest = len(str(key))
+	for items in dictionary.values():
+		for item in items:
+			if len(str(item)) > longest:
+				longest = len(str(item))
+	return longest
+
+def printRow(items, longest):
+	longest = longest + 3 # Assume a minimum of three spaces.
+	temp = ""
+	for item in items:
+		while len(item) < longest:
+			item += " "
+		temp += item.title()
+				
+	print(temp)
+
+def printTable(list):
+	max = getLongest(list)
+	print(max)
+	printRow(list.keys(), max)
+	tempList = []
+	for key in list:
+		tempList.append(list[key][0].title())
+	printRow(tempList, max)
+	#	print(key.title() + ":")
+	#	for item in list[key]:
+	#		print(" * " + item.title())
+			
 while True:
 	text = input("Enter command (read/add/remove/quit): ")
 	if(text.lower() == "read"):
-		for key in shopping_list:
-			print(key.title() + ":")
-			for item in shopping_list[key]:
-				print(" * " + item.title())
+		printTable(shopping_list)
 	elif(text.lower() == "add"):
 		it = input("Enter item name: ")
 		print("Current categories:")

@@ -8,7 +8,6 @@ list = []
 
 for num in range(LENGTH):
 	list.append(random.randint(100))
-
 	
 print("Unsorted List:")
 print(list)
@@ -20,9 +19,7 @@ for j in range(len(list)-1, 0, -1):
 	for i in range(0, j):
 		if(list[i+1] < list[i]):
 			# Swap list elements.
-			temp = list[i]
-			list[i] = list[i+1]
-			list[i+1] = temp
+			list[i], list[i+1] = list[i+1], list[i]
 			done = False # I guess we aren't done.
 	count += 1
 	if(done):
