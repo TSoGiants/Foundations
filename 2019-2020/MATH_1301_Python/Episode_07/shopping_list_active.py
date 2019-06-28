@@ -10,6 +10,16 @@ def getLongest(dictionary):
 			if len(str(item)) > longest:
 				longest = len(str(item))
 	return longest
+	
+def getDimensions(dictionary):
+	columns = len(dictionary.keys())
+	max_rows = 0
+	for key in dictionary:
+		if len(dictionary[key]) > max_rows:
+			max_rows = len(dictionary[key])
+	rows = max_rows
+	return [rows, columns]
+			
 
 def printRow(items, longest):
 	longest = longest + 3 # Assume a minimum of three spaces.
@@ -18,20 +28,21 @@ def printRow(items, longest):
 		while len(item) < longest:
 			item += " "
 		temp += item.title()
-				
 	print(temp)
 
 def printTable(list):
 	max = getLongest(list)
-	print(max)
 	printRow(list.keys(), max)
-	tempList = []
-	for key in list:
-		tempList.append(list[key][0].title())
-	printRow(tempList, max)
-	#	print(key.title() + ":")
-	#	for item in list[key]:
-	#		print(" * " + item.title())
+	dims = getDimensions(list)
+	for i in range(dims[0]):
+		tempList = []
+		for key in list:
+			if i < len(list[key]):
+				tempList.append(list[key][i].title())
+			else:
+				tempList.append("")
+		printRow(tempList, max)
+
 			
 while True:
 	text = input("Enter command (read/add/remove/quit): ")
