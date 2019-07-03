@@ -1,9 +1,12 @@
+"""
+main() function is used to demonstrate the sort() function
+using a randomly generated list.
+""" 
 def main():
 	### List Initialization
-
 	from numpy import random
 
-	LENGTH = 12
+	LENGTH = 6
 
 	list = []
 
@@ -19,6 +22,10 @@ def main():
 	print("Sorted List:")
 	print(list)
 	
+"""
+sort() is the implementation of a basic selection sort
+algorithm.
+"""
 def sort(list):
 	### Beginning of Selection Sort Algorithm
 	list = list.copy()
