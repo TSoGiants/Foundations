@@ -9,6 +9,7 @@ class App:
 		self.game = Hangman()
 		
 		master.title("Hangman GUI")
+		master.iconbitmap('favicon.ico')
 		
 		master.geometry("600x800")
 		master.resizable(False, False)
