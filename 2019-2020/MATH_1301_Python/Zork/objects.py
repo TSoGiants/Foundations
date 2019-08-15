@@ -5,6 +5,7 @@ import items
 #####################
 
 class container:
+    synonyms = ["container"]
     m_description = "A basic container."
     m_on_open = "You open the container."
     m_already_open = "The container is already opened."
@@ -38,6 +39,8 @@ class container:
                 
         return s
         
+    def __repr__(self):
+        return self.synonyms[0]
         
     def open(self):
         if self.is_open:
@@ -78,7 +81,7 @@ class container:
             return self.m_closed
             
             
-class locked_container(container):
+class lockable_container(container):
     m_description = "A container with a lock."
     m_locked = "The container is locked and won't open."
     m_already_unlocked = "The container is already unlocked."
@@ -136,6 +139,8 @@ class locked_container(container):
 ######################
           
 class trophy_case(container):
+    synonyms = ["trophy case", "case"]  
+        
     m_description = "You see a large trophy case."
     
     m_on_open = "You opened the doors to the trophy case."
@@ -145,7 +150,9 @@ class trophy_case(container):
     
     is_windowed = True
     
-class treasure_chest(locked_container):
+class treasure_chest(lockable_container):
+    synonyms = ["treasure chest", "chest"]  
+    
     m_description = "You see a treasure chest."
     
     m_on_open = "With great effort, you heave open the heavy lid to the treasure chest."
