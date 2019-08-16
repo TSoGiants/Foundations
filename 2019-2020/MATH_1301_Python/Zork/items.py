@@ -20,7 +20,7 @@ class item:
 ######################
 
 class trophy(item):
-    synonyms = ["trophy"]
+    synonyms = ["trophy", "shiny trophy"]
     description = "A shiny trophy."
     
     def __init__(self):

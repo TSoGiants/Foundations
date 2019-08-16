@@ -13,14 +13,23 @@ class adventure:
         for i in range(2*y+1):
             self.map.append([])
             for j in range(2*x+1):
-                self.map[i].append([])
+                self.map[i].append(None)
 
         
     def __str__(self):
         s = ""
         for row in self.map:
-            for col in row:
-                s += str(col) + "\t"
+            for room in row:
+                if room:
+                    r = repr(room)
+                else:
+                    r = ""
+                s += r
+                spacing = len(r)
+                while spacing < 20:
+                    s += " "
+                    spacing += 1
+                    
             s += "\n"
         return s
         
@@ -55,7 +64,35 @@ class adventure:
         else:
             print("Coordinates out of bounds.")
             
-                
-            
+if __name__ == "__main__":
+    a = adventure(2,3)
+    
+    ### Rooms
+    room = rooms.room()
+    red_room = rooms.red_room()            
+    blue_room = rooms.blue_room()
+    green_room = rooms.green_room()
+    goal = rooms.final_room()
+    
+    
+    a.add_room(room, 1,1)
+    a.add_room(red_room, 0,0)
+    a.add_room(blue_room, 0,1)
+    a.add_room(green_room, 0,2)
+    a.add_room(goal, 1, 2)
+    
+    ### Barriers
+    
+    passage = barriers.passage()
+    passage_2 = barriers.passage()
+    passage_3 = barriers.passage()
+    door = barriers.door()
+    
+    a.add_barrier(passage, 1,1, "N")
+    a.add_barrier(passage_2, 0,1, "W")
+    a.add_barrier(door, 0,1, "E")
+    a.add_barrier(passage_3, 0,2, "S")
+    
+    print(a)
                 
         
